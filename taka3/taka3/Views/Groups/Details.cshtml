@@ -5,31 +5,27 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
+<h2>@Html.DisplayFor(model => model.GroupName)</h2>
+<!--Fanney, view fyrir hóp-->
 <div>
-    <h4>GroupModel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.GroupName)
+            Stofnandi hóps
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GroupName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-
         <dd>
             @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dt>
+            Hópmeðlimir
+        </dt>
+        <dd>
+
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.GroupID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Breyta", "Edit", new { id = Model.GroupID }) |
+    @Html.ActionLink("Til baka", "Index")
 </p>
