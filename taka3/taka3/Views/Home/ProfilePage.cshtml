@@ -1,0 +1,29 @@
+﻿@model taka3.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<h2>Heimasvæði</h2>
+<div>
+
+    @if (Model.FirstName != null && Model.LastName != null)
+    {
+        <h3>@Model.FirstName @Model.LastName</h3>
+    }
+</div>
+
+@using (Html.BeginForm("FileUpload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="hidden" name="postid" value="" />
+    <label for="file">Setja inn mynd og/eða stöðuuppfærslu:</label>
+    <input type="file" name="file" id="file" style="width: 100%;" />
+    <!--Textabox sem tekur við Status-->
+    <input type="text" name="postBody" id="postBody" />
+    <input type="submit" value="Post" class="submit" />
+}
+
+
+<div>
+    @Html.Partial("_ToDoPartial")
+</div>

@@ -1,0 +1,20 @@
+﻿@model taka3.Models.GroupModel
+
+@using (Html.BeginForm())
+    
+    <Html.ValidationSummary(true)>
+
+<fieldset>
+    <legend>Fields</legend>
+
+    <div class="editor-label">
+     @Html.LabelFor(model => model.GroupName)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.GroupName)
+        @Html.ValidationMessageFor(model => model.GroupName)
+    </div>
+    <p>
+        <input type="submit" value="Create" />
+    </p>
+</fieldset>

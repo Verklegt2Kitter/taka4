@@ -1,0 +1,30 @@
+﻿<!--Hópasvæði-->
+@model taka3.Models.GroupModel
+@{
+    ViewBag.Title = "Groups";
+}
+
+<div>
+    @Html.Partial("_ToDoPartial")
+</div>
+
+
+<h2>Hóparnir mínir</h2>
+<h3>
+    hér birtast allir hóparnir sem notandinn er í
+</h3>
+<ul>
+    <li>
+        @Html.ActionLink("Hópur 1", "GroupProfilePage")
+    </li>
+</ul>
+
+<ul>
+
+    <li>
+        @Html.ActionLink("Hópur 1", "RegisterGroup")
+    </li>
+</ul>
+<div>
+    @Html.Label(Model.GroupName)
+</div>
