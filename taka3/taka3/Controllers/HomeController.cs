@@ -13,11 +13,8 @@ namespace taka3.Controllers
 {
     public class HomeController : Controller
     {
-		UserService userService = new UserService();
-
         public ActionResult Index()
         {
-
 			IdentityManager manager = new IdentityManager();
 
 			//Búa til nýjan user ef það er enginn til með UserName username	-Védís
@@ -54,44 +51,6 @@ namespace taka3.Controllers
 				return View();
 			}
         }
-
-		//steindor gerði fall sem sækir myndir
-		public ActionResult FileUpload(HttpPostedFileBase file, int? postid, string postBody)
-		{
-			string postbody = postBody;
-			string photo = null;
-
-			if (file != null)
-			{
-				string pic = System.IO.Path.GetFileName(file.FileName);
-				string path = System.IO.Path.Combine(
-									   Server.MapPath("~/Content/images"), pic);
-				// file is uploaded
-				file.SaveAs(path);
-
-				// save the image path path to the database or you can send image
-				// directly to database
-				// in-case if you want to store byte[] ie. for DB
-				/*using (MemoryStream ms = new MemoryStream())
-				{
-					file.InputStream.CopyTo(ms);
-					byte[] array = ms.GetBuffer();
-				}*/
-
-				photo = path;
-
-			}
-
-			UserPost model = new UserPost();
-			model.UserID = User.Identity.GetUserId();
-			model.Image = photo;
-			model.PostBody = postbody;
-			model.DateAndTime = DateTime.Now;
-
-			userService.AddPosts(model);
-			// after successfully uploading redirect the user
-			return RedirectToAction("ProfilePage", "Home");
-		}
 
         public ActionResult Groups()
         {
@@ -150,5 +109,6 @@ namespace taka3.Controllers
          //  string userNameToMatch
           // );
 
+	   
     }
 }

@@ -13,16 +13,7 @@
     }
 </div>
 
-@using (Html.BeginForm("FileUpload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <input type="hidden" name="postid" value="" />
-    <label for="file">Setja inn mynd og/eða stöðuuppfærslu:</label>
-    <input type="file" name="file" id="file" style="width: 100%;" />
-    <!--Textabox sem tekur við Status-->
-    <input type="text" name="postBody" id="postBody" />
-    <input type="submit" value="Post" class="submit" />
-}
-
+@Html.Partial("_AddPostPartial")
 
 <div>
     @Html.Partial("_ToDoPartial")
