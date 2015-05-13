@@ -170,11 +170,15 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\FriendModel.cs" />
+    <Compile Include="Models\Group.cs" />
     <Compile Include="Models\GroupModel.cs" />
+    <Compile Include="Models\GroupPost.cs" />
     <Compile Include="Models\GroupUser.cs" />
     <Compile Include="Models\IdentityManager.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProfilePageViewModel.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserPost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FollowingService.cs" />
