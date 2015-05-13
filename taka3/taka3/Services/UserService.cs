@@ -12,6 +12,10 @@ namespace taka3.Services
     {
 		ApplicationDbContext m_db = new ApplicationDbContext();
 
+        public List<ApplicationUser> GetAllUsers()
+        {
+            return m_db.Users.ToList();
+        }
 		public void AddPosts(UserPost post)
 		{
 			
@@ -21,6 +25,14 @@ namespace taka3.Services
 				m_db.SaveChanges();
 			}
 		}
+        public ApplicationUser GetThisUserById(string userId)
+        {
+            var thisUser = (from u in GetAllUsers()
+                            where u.Id == userId
+                            select u).SingleOrDefault();
+            return thisUser;
+        
+        }
 
 		public IEnumerable<UserPost> GetPostsByUserId(string userid)
 		{
