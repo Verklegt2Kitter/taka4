@@ -1,19 +1,27 @@
-﻿@model taka3.Models.ApplicationUser
+﻿@model taka3.Models.ProfilePageViewModel
 
 @{
     ViewBag.Title = "Profile";
 }
 
 <h2>Heimasvæði</h2>
-<div>
+<h3><!--Birta nafn notandans sem á heimasvæðið--></h3>
 
-    @if (Model.FirstName != null && Model.LastName != null)
+<div>
+    @foreach (var post in Model.UserPosts)
     {
-        <h3>@Model.FirstName @Model.LastName</h3>
+        <p>@post.DateAndTime</p>
+        
+        if(post.Image != null)
+        {
+            <img src="~/Content/images/@post.ImageName" />
+        }
+
+        <p>@post.PostBody</p>
+        
+        <br/>
     }
 </div>
-
-@Html.Partial("_AddPostPartial")
 
 <div>
     @Html.Partial("_ToDoPartial")

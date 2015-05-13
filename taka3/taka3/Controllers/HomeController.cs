@@ -13,6 +13,8 @@ namespace taka3.Controllers
 {
     public class HomeController : Controller
     {
+		ApplicationDbContext m_db = new ApplicationDbContext();
+
         public ActionResult Index()
         {
 			IdentityManager manager = new IdentityManager();
@@ -52,6 +54,7 @@ namespace taka3.Controllers
 			}
         }
 
+		[Authorize]
         public ActionResult Groups()
         {
             ViewBag.Message = "Your application groups page.";
@@ -59,26 +62,28 @@ namespace taka3.Controllers
             return View();
         }
 
+		[Authorize]
 		public ActionResult NewsFeed()
 		{
 			return View();
 		}
 
+		[Authorize]
 		public ActionResult ProfilePage()
 		{
-			ViewBag.Message = "Your newsfeed.";
-
+			ProfilePageViewModel model = new ProfilePageViewModel();
 			IdentityManager manager = new IdentityManager();
+			//var username = User.Identity.GetUserName();
+			//var user = manager.GetUser(userid);
+			var userid = User.Identity.GetUserId();
+			var usr = new UserService();
 
-			var userid = User.Identity.GetUserName();
+			model.UserPosts = usr.GetPostsByUserId(userid).ToList();
 
-			var user = manager.GetUser(userid);
-
-			//var firstname = user.FirstName;
-
-			return View("ProfilePage", user); //Skilar firstname þess notanda sem er innskráður	-Védís
+			return View(model);
 		}
 
+		[Authorize]
 		public ActionResult Hamburger()
 		{
 			ViewBag.Message = "Your settings page.";
@@ -87,7 +92,8 @@ namespace taka3.Controllers
 		}
 
        //fanney gerði heimasíðu hópa
-       public ActionResult GroupProfilePage()
+		[Authorize]
+        public ActionResult GroupProfilePage()
         {
             ViewBag.Message = "Group homepage.";
 

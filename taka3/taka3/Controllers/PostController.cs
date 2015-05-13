@@ -20,28 +20,29 @@ namespace taka3.Controllers
 	   {
 		   string postbody = postBody;
 		   string photo = null; //Bætti við svo hægt að seiva mynd í gagnagrunn	-Védís
+		   string photonameshort = null;
 
 		   if (file != null)
 		   {
 			   string pic = System.IO.Path.GetFileName(file.FileName);
-			   string path = System.IO.Path.Combine(
-									  Server.MapPath("~/Content/images"), pic);
+			   string path = System.IO.Path.Combine(Server.MapPath("~/Content/images"), pic);
 			   // file is uploaded
 			   file.SaveAs(path);
 			   photo = path;
+			   photonameshort = pic;
 		   }
 
 		   UserPost model = new UserPost();
 		   model.UserID = User.Identity.GetUserId();
 		   model.Image = photo;
+		   model.ImageName = photonameshort;
 		   model.PostBody = postbody;
 		   model.DateAndTime = DateTime.Now;
 
 		   userService.AddPosts(model);
-		   // after successfully uploading redirect the user
 
-		   //Það þarf að redirecta á aðra síðu!!!!
-           return RedirectToAction("ProfilePage", "Home");
+		   //Redirectar aftur á newsfeedið
+           return RedirectToAction("NewsFeed", "Home");
 	   }
 	}
 }

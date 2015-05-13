@@ -28,7 +28,7 @@ namespace taka3.Services
             followMe.FollowingUserId = userToFollow;
             followMe.isFollowing = true;
 
-            m_db.FriendModel.Add(followMe);
+            //m_db.FriendModel.Add(followMe);
             m_db.SaveChanges();
         }
         public List<FriendModel> MyFollowingList(string userId)
@@ -45,7 +45,11 @@ namespace taka3.Services
         {
             var list = GetAllFriendList();
             var thisUser = (from u in list
+<<<<<<< HEAD
                                 where u.Id == id
+=======
+                             //   where u.Id = id
+>>>>>>> f2b13aef716c046ba3715319454c4b922bc06e9d
                                 select u).SingleOrDefault();
 
             return thisUser;
@@ -58,7 +62,7 @@ namespace taka3.Services
                               select f).SingleOrDefault();
 
             var unfollow = GetUserFriendInfoById(stopFollow.Id);
-            m_db.FriendModel.Remove(unfollow);
+           // m_db.FriendModel.Remove(unfollow);
 
             m_db.SaveChanges();
         }

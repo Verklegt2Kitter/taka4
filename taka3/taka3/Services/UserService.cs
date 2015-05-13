@@ -38,6 +38,7 @@ namespace taka3.Services
 		{
 			var result = from item in m_db.UserPosts
 						 where item.UserID == userid
+						 orderby item.DateAndTime descending
 						 select item;
 			return result;
 		}
