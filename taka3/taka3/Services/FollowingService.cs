@@ -12,13 +12,12 @@ namespace taka3.Services
     {
         ApplicationDbContext m_db = new ApplicationDbContext();
         
-
+        //fanney/steindór breyttu
         public List<FriendModel> GetAllFriendList()
         {
-            //return m_db.FriendModel.ToList();
-            return null;
+           return m_db.FriendModel.ToList();
         }
-        //
+        
         public void AddFollowingToUser(string thisUser, string userToFollow)
         {
             var userService = new UserService();
