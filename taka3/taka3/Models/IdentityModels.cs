@@ -36,6 +36,7 @@ namespace taka3.Models
 		public DbSet<UserPost> UserPosts { get; set; }
         public DbSet<GroupModel> Group { get; set; }
         public DbSet<GroupUser> GroupUser { get; set; }
+        public DbSet<FriendModel> FriendModel { get; set; }
         
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

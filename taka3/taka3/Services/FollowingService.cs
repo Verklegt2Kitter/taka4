@@ -15,8 +15,7 @@ namespace taka3.Services
 
         public List<FriendModel> GetAllFriendList()
         {
-            //return m_db.FriendModel.ToList();
-            return null;
+            return m_db.FriendModel.ToList();
         }
         //
         public void AddFollowingToUser(string thisUser, string userToFollow)
@@ -46,7 +45,7 @@ namespace taka3.Services
         {
             var list = GetAllFriendList();
             var thisUser = (from u in list
-                                where u.Id = id
+                                where u.Id == id
                                 select u).SingleOrDefault();
 
             return thisUser;
