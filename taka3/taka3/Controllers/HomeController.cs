@@ -65,6 +65,9 @@ namespace taka3.Controllers
 		[Authorize]
 		public ActionResult NewsFeed()
 		{
+			NewsFeedViewModel model = new NewsFeedViewModel();
+			IdentityManager manager = new IdentityManager();
+
 			return View();
 		}
 
@@ -73,7 +76,7 @@ namespace taka3.Controllers
 		{
 			ProfilePageViewModel model = new ProfilePageViewModel();
 			IdentityManager manager = new IdentityManager();
-			var post = new UserService();
+			var post = new UserPostService();
 
 			var userid = User.Identity.GetUserId();
 			var username = User.Identity.GetUserName();
