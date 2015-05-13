@@ -87,6 +87,7 @@ namespace taka3.Controllers
 
 			model.UserFirstName = user.FirstName;
 			model.UserLastName = user.LastName;
+            model.userID = user.Id;
 			
 
 

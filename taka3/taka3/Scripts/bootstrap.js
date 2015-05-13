@@ -40,6 +40,11 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
  * ======================================================================== */
 
 
+//fanney, followtakkinn
+$(".button").click(function () {
+    $(".button span").html($(".button span").html() == 'followed' ? 'follow' : 'followed');
+});
+
 +function ($) { "use strict";
 
   // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
@@ -194,7 +199,6 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * ======================================================================== */
-
 
 +function ($) { "use strict";
 

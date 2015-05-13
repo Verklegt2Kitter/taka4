@@ -170,7 +170,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\FriendModel.cs" />
-    <Compile Include="Models\Group.cs" />
     <Compile Include="Models\GroupModel.cs" />
     <Compile Include="Models\GroupPost.cs" />
     <Compile Include="Models\GroupUser.cs" />
@@ -185,6 +184,7 @@
     <Compile Include="Services\FollowingService.cs" />
     <Compile Include="Services\GroupService.cs" />
     <Compile Include="Services\UserPostService.cs" />
+    <Compile Include="Services\UserService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -257,6 +257,7 @@
     <Content Include="Views\Groups\Edit.cshtml" />
     <Content Include="Views\Groups\Index.cshtml" />
     <Content Include="Views\Shared\_SearchPartialView.cshtml" />
+    <Content Include="Views\Shared\_FollowButton.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
