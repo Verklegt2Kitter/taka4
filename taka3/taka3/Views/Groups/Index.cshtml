@@ -27,13 +27,13 @@
             <td>
                 @Html.ActionLink(item.GroupName, "Details", new { id = item.GroupID })
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
+             <td>
+                @Html.DisplayFor(modelItem => item.UserName )
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.GroupID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.GroupID })
-            </td>
+          <!-- <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.GroupID }) 
+                @Html.ActionLink("Delete", "Delete", new { id = item.GroupID })  
+            </td> -->
         </tr>
     }
 
