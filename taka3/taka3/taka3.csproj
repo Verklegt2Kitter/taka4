@@ -177,6 +177,7 @@
     <Compile Include="Models\IdentityManager.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\NewsFeedViewModel.cs" />
     <Compile Include="Models\ProfilePageViewModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserPost.cs" />
