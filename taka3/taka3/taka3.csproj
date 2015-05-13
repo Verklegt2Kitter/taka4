@@ -185,6 +185,7 @@
     <Compile Include="Services\FollowingService.cs" />
     <Compile Include="Services\GroupService.cs" />
     <Compile Include="Services\UserPostService.cs" />
+    <Compile Include="Services\UserService_2.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

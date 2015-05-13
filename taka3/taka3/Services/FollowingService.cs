@@ -28,7 +28,7 @@ namespace taka3.Services
             followMe.FollowingUserId = userToFollow;
             followMe.isFollowing = true;
 
-            //m_db.FriendModel.Add(followMe);
+            m_db.FriendModel.Add(followMe);
             m_db.SaveChanges();
         }
         public List<FriendModel> MyFollowingList(string userId)
