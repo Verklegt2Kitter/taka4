@@ -20,7 +20,7 @@ namespace taka3.Services
         //
         public void AddFollowingToUser(string thisUser, string userToFollow)
         {
-            var userService = new UserService();
+            var userService = new UserPostService();
             
             var followMe = new FriendModel();
 
@@ -33,7 +33,7 @@ namespace taka3.Services
         }
         public List<FriendModel> MyFollowingList(string userId)
         {
-            var userService = new UserService();
+            var userService = new UserPostService();
 
             var me = userService.GetThisUserById(userId);
             var returnMe = (from l in GetAllFriendList()

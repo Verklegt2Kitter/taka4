@@ -13,7 +13,7 @@ namespace taka3.Controllers
 	//TODO BÆTA VIÐ AÐ HÆGT SÉ AÐ ADDA GROUPID	-Védís
     public class PostController : Controller
     {
-		UserService userService = new UserService();
+		UserPostService userService = new UserPostService();
 
 	   //steindor gerði fall sem sækir myndir
 	   public ActionResult FileUpload(HttpPostedFileBase file, int? postid, string postBody)

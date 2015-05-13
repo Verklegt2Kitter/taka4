@@ -4,8 +4,8 @@
     ViewBag.Title = "Profile";
 }
 
-<h2>Heimasvæði</h2>
-<h3><!--Birta nafn notandans sem á heimasvæðið--></h3>
+<h2>@Model.UserFirstName @Model.UserLastName</h2>
+
 
 <div>
     @foreach (var post in Model.UserPosts)
