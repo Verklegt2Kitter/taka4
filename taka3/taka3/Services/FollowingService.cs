@@ -58,9 +58,16 @@ namespace taka3.Services
                               select f).SingleOrDefault();
 
             var unfollow = GetUserFriendInfoById(stopFollow.Id);
+
            m_db.FriendModel.Remove(unfollow);
 
+
             m_db.SaveChanges();
+        }
+
+        internal object GetUserFriendInfoById(string userid)
+        {
+            throw new NotImplementedException();
         }
     }
 }
