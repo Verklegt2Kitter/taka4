@@ -25,11 +25,12 @@
             <div class="navbar-collapse collapse">
     @if (Request.IsAuthenticated)
     {
+        //Fanney lagað möppur
         <ul class="nav navbar-nav">
-            <li>@Html.ActionLink("Fréttaveita", "NewsFeed")</li>
+            <li>@Html.ActionLink("Fréttaveita","NewsFeed","Home")</li>
             <li>@Html.ActionLink("Hópar", "Index", "Groups")</li>
-            <li>@Html.ActionLink("Heimasvæði", "ProfilePage")</li>
-            <li>@Html.ActionLink("Stillingar", "Hamburger")</li>
+            <li>@Html.ActionLink("Heimasvæði","ProfilePage","Home" )</li>
+            <li>@Html.ActionLink("Stillingar", "Hamburger", "Home")</li>
 
 
             <!---Fanney að brasa með hamborgara
