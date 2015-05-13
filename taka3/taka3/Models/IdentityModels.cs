@@ -35,6 +35,7 @@ namespace taka3.Models
         //Fanney, hópastatus. Eftir fyrirlestri Dabs
 		public DbSet<UserPost> UserPosts { get; set; }
         public DbSet<GroupModel> Group { get; set; }
+        public DbSet<GroupUser> GroupUser { get; set; }
         
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

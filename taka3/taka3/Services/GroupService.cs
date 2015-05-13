@@ -20,9 +20,38 @@ namespace taka3.Services
             return m_db.Group;
         }
 
-        internal static void AddGroupModel(GroupModel m)
+        public GroupModel GetGroupById(int id)
+        {
+            var result = (from tempitem in m_db.Group
+                         where tempitem.GroupID == id
+                         select tempitem).SingleOrDefault();
+            return result;
+        }
+
+        public IEnumerable<GroupModel> GetGroupsForUser(string userid)
+        {
+            var result = from item in m_db.GroupUser
+                         where item.UserId == userid
+                         select item;
+
+            var model = new List<GroupModel>();
+
+            foreach (var item in result)
+            {
+                var temp = GetGroupById(item.GroupId);
+                if(temp != null)
+                {
+                    model.Add(temp);
+                }
+            }
+
+            return model;
+        }
+
+        /*internal static void AddGroupModel(GroupModel m)
         {
             throw new NotImplementedException();
-        }
+        }*/
+
     }
 }

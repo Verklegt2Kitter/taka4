@@ -41,7 +41,7 @@ namespace taka3.Controllers
 		   // after successfully uploading redirect the user
 
 		   //Það þarf að redirecta á aðra síðu!!!!
-		   return RedirectToAction("ProfilePage", "Home");
+           return RedirectToAction("ProfilePage", "Home");
 	   }
 	}
 }

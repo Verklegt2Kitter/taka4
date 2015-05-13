@@ -17,6 +17,8 @@ namespace taka3.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         private readonly GroupService _groups;
 
+        private GroupService gService = new GroupService();
+
         public GroupsController()
         {
             _groups = new GroupService();
@@ -41,6 +43,16 @@ namespace taka3.Controllers
                 return HttpNotFound();
             }
             return View(groupModel);
+        }
+
+        [Authorize]
+        public ActionResult GetUserGroups()
+        {
+            var userid = User.Identity.GetUserId();
+
+            var model = gService.GetGroupsForUser(userid);
+
+            return View(model);
         }
 
         // GET: Groups/Create
