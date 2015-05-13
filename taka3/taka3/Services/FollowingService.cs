@@ -45,12 +45,8 @@ namespace taka3.Services
         {
             var list = GetAllFriendList();
             var thisUser = (from u in list
-<<<<<<< HEAD
-                                where u.Id == id
-=======
-                             //   where u.Id = id
->>>>>>> f2b13aef716c046ba3715319454c4b922bc06e9d
-                                select u).SingleOrDefault();
+                            where u.Id == id
+                            select u).SingleOrDefault();
 
             return thisUser;
         }
