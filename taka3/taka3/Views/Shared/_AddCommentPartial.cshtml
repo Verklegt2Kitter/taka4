@@ -1,0 +1,8 @@
+﻿@using (Html.BeginForm("CommentUpload", "Comment", FormMethod.Post, new { enctype = "multipart/form-data", postid = @Model.ID }))
+{
+    <input type="hidden" name="postid" value="model.ID" />
+    <input type="hidden" name="UserID" value="model.UserID" />
+    <label for="comment">Tjáning um málefnið</label>
+    <input type="text" name="commentBody" id="commentBody" />
+    <input type="submit" value="Post Comment" class="submit" />
+}
