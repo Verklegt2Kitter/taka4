@@ -1,11 +1,44 @@
-﻿
+﻿@model taka3.Models.NewsFeedViewModel
 @{
     ViewBag.Title = "NewsFeed";
 }
 
 <h2>Fréttaveita</h2>
 
-@Html.Partial("_AddPostPartial")
+<div>
+    @Html.Partial("_AddPostPartial")
+</div>
+
+<div>
+        @if(Model != null )
+        {
+            foreach (var item in Model.AllUserPosts)
+            {
+                @Html.ActionLink(@item.UserFirstName+" "+@item.UserLastName,"FriendProfilePage")
+
+                <p>@item.DateAndTime</p>
+
+                if (item.Image != null)
+                {
+                    <img src="~/Content/images/@item.ImageName" />
+                }
+
+                if (item.PostBody != null)
+                {
+                    <p>@item.PostBody</p>
+                }
+                <br />
+
+                <!--Birta comment sem fylgja mynd-->
+            <div>
+
+            </div>
+            }
+
+        }
+        }
+
+</div>
 
 <div>
     @Html.Partial("_ToDoPartial")

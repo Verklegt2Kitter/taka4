@@ -59,9 +59,13 @@ namespace taka3.Services
                               select f).SingleOrDefault();
 
             var unfollow = GetUserFriendInfoById(stopFollow.Id);
+<<<<<<< HEAD
 
             m_db.FriendModel.Remove(unfollow);
 
+=======
+            m_db.FriendModel.Remove(unfollow);
+>>>>>>> 1db080c79d5b0c1db6656f57631127e9e8094492
 
             m_db.SaveChanges();
         }

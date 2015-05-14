@@ -46,7 +46,7 @@ namespace taka3.Controllers
 			//Sendir á Fréttaveituna(NewsFeed) ef notandi er skráður inn	-Védís
 			if (Request.IsAuthenticated)
 			{
-				return View("NewsFeed");
+				return RedirectToAction("NewsFeed");
 			}
 			else
 			{
@@ -67,8 +67,36 @@ namespace taka3.Controllers
 		{
 			NewsFeedViewModel model = new NewsFeedViewModel();
 			IdentityManager manager = new IdentityManager();
+			var post = new UserPostService();
 
-			return View();
+			//model.AllUserPosts = post.GetAllUserPosts().ToList();
+			model.AllUserPosts = (from p in post.GetAllUserPosts()
+								  select new UserPostViewModel
+								  {
+									  ID = p.ID,
+									  UserID = p.UserID,
+									  //GroupID = p.GroupID,
+									  PostBody = p.PostBody,
+									  DateAndTime = p.DateAndTime,
+									  Image = p.Image,
+									  ImageName = p.ImageName
+								  }).ToList();
+
+
+			foreach (var item in model.AllUserPosts)
+			{
+				if(item != null)
+				{
+					var userIdTemp = post.GetUserId(item.ID);
+					var userNameTemp = post.GetUserNameById(userIdTemp);
+					var user = manager.GetUser(userNameTemp);
+
+					item.UserFirstName = user.FirstName;
+					item.UserLastName = user.LastName;
+				}
+				
+			}
+			return View(model);
 		}
 
 		[Authorize]
@@ -78,12 +106,12 @@ namespace taka3.Controllers
 			IdentityManager manager = new IdentityManager();
 			var post = new UserPostService();
 
-			var userid = User.Identity.GetUserId();
-			var username = User.Identity.GetUserName();
+			var userId = User.Identity.GetUserId();
+			var userName = User.Identity.GetUserName();
 
-			model.UserPosts = post.GetPostsByUserId(userid).ToList();
+			model.UserPosts = post.GetPostsByUserId(userId).ToList();
 
-			var user = manager.GetUser(username);
+			var user = manager.GetUser(userName);
 
 			model.UserFirstName = user.FirstName;
 			model.UserLastName = user.LastName;
@@ -126,6 +154,11 @@ namespace taka3.Controllers
          //  string userNameToMatch
           // );
 
-	   
+		//Stjórnar Prófílsíðum annara notanda	-Védís
+	   public ActionResult FriendProfilePage()
+		{
+			return View();
+		}
+
     }
 }

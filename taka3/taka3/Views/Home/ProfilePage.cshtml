@@ -18,10 +18,13 @@
         {
             <img src="~/Content/images/@post.ImageName" />
         }
-
-        <p>@post.PostBody</p>
         
+        if (post.PostBody != null)
+        {
+            <p>@post.PostBody</p>
+        }
         <br/>
+        @Html.Partial("_AddCommentPartial")
     }
 </div>
 

@@ -9,7 +9,11 @@ using Microsoft.AspNet.Identity;
 
 namespace taka3.Controllers
 {
+<<<<<<< HEAD
     public class FriendController: Controller
+=======
+    public class FriendController : Controller
+>>>>>>> 1db080c79d5b0c1db6656f57631127e9e8094492
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -21,11 +25,20 @@ namespace taka3.Controllers
         }
 
         [HttpPost]
+<<<<<<< HEAD
         public ActionResult FollowUser(string userID)
         {
             string currUserId = User.Identity.GetUserId();
             var fService = new FollowingService(); // kannski þarf að senda inn db
             fService.AddFollowingToUser(currUserId, userID);
+=======
+        [ValidateAntiForgeryToken]
+        public ActionResult FollowUser(string userId)
+        {
+            string currUserId = User.Identity.GetUserId();
+            var fService = new FollowingService();
+            fService.AddFollowingToUser(currUserId, userId);
+>>>>>>> 1db080c79d5b0c1db6656f57631127e9e8094492
             return View(); //TODO: Fix return statement
 
         }
