@@ -7,7 +7,7 @@
 <h2>@Model.UserFirstName @Model.UserLastName</h2>
 
 <div>
-    @Html.Partial("_FollowButton")
+    @Html.Partial("_FollowButton", Model)
 </div>
 <div>
     @foreach (var post in Model.UserPosts)

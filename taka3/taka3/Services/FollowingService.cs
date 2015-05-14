@@ -11,17 +11,18 @@ namespace taka3.Services
     public class FollowingService
     {
         ApplicationDbContext m_db = new ApplicationDbContext();
-        
+
         //fanney/steindór fengu hjálp og til varð follow stuff
         public List<FriendModel> GetAllFriendList()
         {
-           return m_db.FriendModel.ToList();
+            return m_db.FriendModel.ToList();
         }
-        
+
         public void AddFollowingToUser(string thisUser, string userToFollow)
         {
-            var userService = new UserService();
-            
+
+            var userService = new UserService(m_db);
+
             var followMe = new FriendModel();
 
             followMe.User = userService.GetThisUserById(thisUser); // Application user.
@@ -45,8 +46,8 @@ namespace taka3.Services
         {
             var list = GetAllFriendList();
             var thisUser = (from u in list
-                             where u.Id == id
-                              select u).SingleOrDefault();
+                            where u.Id == id
+                            select u).SingleOrDefault();
 
             return thisUser;
         }
@@ -58,9 +59,16 @@ namespace taka3.Services
                               select f).SingleOrDefault();
 
             var unfollow = GetUserFriendInfoById(stopFollow.Id);
-           m_db.FriendModel.Remove(unfollow);
+
+            m_db.FriendModel.Remove(unfollow);
+
 
             m_db.SaveChanges();
+        }
+
+        internal object GetUserFriendInfoById(string userid)
+        {
+            throw new NotImplementedException();
         }
     }
 }

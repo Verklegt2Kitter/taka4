@@ -1,7 +1,7 @@
-﻿<!--Fanney, útfærir followhnappinn-->
+﻿@model taka3.Models.ProfilePageViewModel
 
-
-@using (Html.BeginForm("FollowUser", "Friend", FormMethod.Post, new { userId = "userId"}))
+@using (Html.BeginForm("FollowUser", "Friend", FormMethod.Post, new { userId = "userId" }))
 {
+    @Html.Hidden("userID", Model.userID)
     <button type="submit" id="status" class="button" value="True"><span>follow</span></button>
 }
