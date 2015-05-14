@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Globalization;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Net.Mail;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -200,12 +203,12 @@ namespace taka3.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model, string message)
         {
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                if (user == null )
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
@@ -213,10 +216,27 @@ namespace taka3.Controllers
 
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+
+                string strEmail = ConfigurationManager.AppSettings["Email"];    // Getting the E-mail address from the web.config file
+                using (MailMessage msg = new MailMessage())
+                {
+                    string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    
+                    // Sent á notanda að hann geti breytt lykilorði IÞM
+      
+                    msg.To.Add(model.Email);
+                    msg.Subject = "Nýtt lykilorð";
+                    msg.Body ="Farðu á þessa slóð til að endursetja lykilorð " + callbackUrl ;
+                    using (SmtpClient client = new SmtpClient())
+                    {
+                        client.EnableSsl = true;
+                        client.Send(msg);
+                    }
+                    return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                }
+                
+                
             }
 
             // If we got this far, something failed, redisplay form
